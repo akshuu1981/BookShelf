@@ -18,11 +18,7 @@ class BookViewModel @Inject constructor(
     private val _books = MutableStateFlow<List<Book>>(emptyList())
     val books = _books.asStateFlow()
 
-    init {
-        fetchBooks()
-    }
-
-    private fun fetchBooks(){
+    fun fetchBooks(){
         viewModelScope.launch {
             _books.value = repository.getBooks("jazz+history")
         }
